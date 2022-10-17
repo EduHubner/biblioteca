@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContatosController;
+use App\Http\Controllers\LivroController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,4 +19,10 @@ Route::get('/', function () {
     return redirect('contatos/');
 });
 
+Route::get('contatos/buscar', [ContatosController::class, 'buscar']);
+
 Route::resource('contatos', ContatosController::class);
+
+Route::get('livros/buscar', [LivroController::class, 'buscar']);
+
+Route::resource('livros', LivroController::class);

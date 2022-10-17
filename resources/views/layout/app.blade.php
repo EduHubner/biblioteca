@@ -8,6 +8,8 @@
     <title>@yield('title')</title>
 </head>
 <body>
+    @include('layout.menu')
+    <br>
     <div class="container">
         @yield('content')
     </div>

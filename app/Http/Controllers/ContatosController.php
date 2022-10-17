@@ -26,12 +26,9 @@ class ContatosController extends Controller
      */
 
     public function buscar(Request $request) {
-        $contatos = Contato::where('nome', 'LIKE', '%'.$request->input('busca').'%')
-        ->orwhere('email', 'LIKE', '%'.$request->input('busca').'%')
-        ->orwhere('cidade', 'LIKE', '%'.$request->input('busca').'%')
-        ->orwhere('estado', 'LIKE', '%'.$request->input('busca').'%')
-        ->get();
-        return view('contato.index', array('contatos' => $contatos, 'busca' => request->input('busca')));
+        $contatos = Contato::where('nome', 'LIKE', '%'.$request->input('busca')
+        .'%')->orwhere('email', 'LIKE', '%'.$request->input('busca').'%')->get();
+        return view('contato.index', array('contatos' => $contatos, 'busca' => $request->input('busca')));
         
     }
 

@@ -11,7 +11,7 @@
     </ul>
     {{Form::open(['route' => ['contatos.destroy', $contato->id], 'method' => 'DELETE'])}}
     <a href="{{url('contatos/'.$contato->id.'/edit')}}" class="btn btn-success">Alterar</a>
-    {{Form::submit('Excluir',['class' => 'btn btn-danger'])}}
+    {{Form::submit('Excluir',['class' => 'btn btn-danger', 'onclick' => 'return confirm("Confirmar Exclusão?")'])}}
     <a href="{{url('contatos/')}}" class="btn btn-secondary">Voltar</a>
     {{Form::close()}}
 @endsection

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContatosController;
 use App\Http\Controllers\LivroController;
+use App\Http\Controllers\EmprestimoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +21,11 @@ Route::get('/', function () {
 });
 
 Route::get('contatos/buscar', [ContatosController::class, 'buscar']);
-
 Route::resource('contatos', ContatosController::class);
 
 Route::get('livros/buscar', [LivroController::class, 'buscar']);
-
 Route::resource('livros', LivroController::class);
+
+Route::get('emprestimos/buscar', [EmprestimoController::class, 'buscar']);
+Route::resource('emprestimos', EmprestimoController::class);
+

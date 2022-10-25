@@ -80,7 +80,7 @@ class EmprestimoController extends Controller
     public function show($id)
     {
         $emprestimo = Emprestimo::find($id);
-        return view('emprestimo.show',array('emprestimos' => $emprestimo,'busca'=>null));
+        return view('emprestimo.show',array('emprestimo' => $emprestimo,'busca'=>null));
     }
 
     /**
@@ -112,8 +112,12 @@ class EmprestimoController extends Controller
      * @param  \App\Models\Emprestimo  $emprestimo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Emprestimo $emprestimo)
+    public function destroy(Emprestimo $emprestimo, $id)
     {
-        //
+        $emprestimo = Emprestimo::find($id);
+
+        $emprestimo->delete();
+        Session::flash('mensagem','Empréstimo Excluído com Sucesso');
+        return redirect(url('emprestimos/'));
     }
 }

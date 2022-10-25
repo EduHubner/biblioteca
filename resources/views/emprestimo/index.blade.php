@@ -28,6 +28,13 @@
     {{Form::close()}}
     <br />
     <table class="table table-striped">
+        <tr>
+            <td>ID</td>
+            <td>Contato</td>
+            <td>Livro</td>
+            <td>Data</td>
+            <td>Devolução</td>
+        </tr>
         @foreach ($emprestimos as $emprestimo)
             <tr>
                 <td>
@@ -40,8 +47,10 @@
                     {{$emprestimo->livro_id}} - {{$emprestimo->livro->titulo}}
                 </td>
                 <td>
-                    {{$emprestimo->datahora}}
+                    {{\Carbon\Carbon::create($emprestimo->datahora)->format('d/m/Y H:i:s')}}
                 </td>
+                <td>
+                    {!!$emprestimo->devolvido!!}
             </tr>
         @endforeach
     </table>

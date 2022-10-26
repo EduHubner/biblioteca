@@ -27,5 +27,9 @@ Route::get('livros/buscar', [LivroController::class, 'buscar']);
 Route::resource('livros', LivroController::class);
 
 Route::get('emprestimos/buscar', [EmprestimoController::class, 'buscar']);
+Route::get('emprestimos/{emprestimo}/devolver', [EmprestimoController::class, 'devolver'])->name('emprestimos.devolver');
 Route::resource('emprestimos', EmprestimoController::class);
 
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

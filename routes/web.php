@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContatosController;
 use App\Http\Controllers\LivroController;
 use App\Http\Controllers\EmprestimoController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +18,7 @@ use App\Http\Controllers\EmprestimoController;
 */
 
 Route::get('/', function () {
-    return redirect('contatos/');
+    return redirect('home/');
 });
 
 Route::get('contatos/buscar', [ContatosController::class, 'buscar']);
@@ -27,9 +28,9 @@ Route::get('livros/buscar', [LivroController::class, 'buscar']);
 Route::resource('livros', LivroController::class);
 
 Route::get('emprestimos/buscar', [EmprestimoController::class, 'buscar']);
-Route::get('emprestimos/{emprestimo}/devolver', [EmprestimoController::class, 'devolver'])->name('emprestimos.devolver');
+Route::put('emprestimos/{emprestimo}/devolver', [EmprestimoController::class, 'devolver'])->name('emprestimos.devolver');
 Route::resource('emprestimos', EmprestimoController::class);
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Contato;
+//use App\Models\User;
 use Session;
 
 class ContatosController extends Controller
@@ -38,7 +39,7 @@ class ContatosController extends Controller
      */
     public function create()
     {
-        if (Auth::check()) {
+        if ((Auth::check()) && (Auth::user()->isAdmin())) {
             return view('contato.create');
         }
         else {
@@ -55,7 +56,7 @@ class ContatosController extends Controller
      */
     public function store(Request $request)
     {
-        if (Auth::check()) {
+        if ((Auth::check()) && (Auth::user()->isAdmin())) {
             $this->validate($request,[
                 'nome' => 'required|min:3',
                 'email' => 'required|e-mail',
@@ -103,7 +104,7 @@ class ContatosController extends Controller
      */
     public function edit($id)
     {
-        if (Auth::check()) {
+        if ((Auth::check()) && (Auth::user()->isAdmin())) {
             $contato = Contato::find($id);
             return view('contato.edit',array('contato' => $contato));
         } else {
@@ -120,7 +121,7 @@ class ContatosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if (Auth::check()) {
+        if ((Auth::check()) && (Auth::user()->isAdmin())) {
             $this->validate($request,[
                 'nome' => 'required|min:3',
                 'email' => 'required|e-mail|min:3',
@@ -157,7 +158,7 @@ class ContatosController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        if (Auth::check()) {
+        if ((Auth::check()) && (Auth::user()->isAdmin())) {
             $contato = Contato::find($id);
             if (isset($request->foto)) {
             unlink($request->foto);
